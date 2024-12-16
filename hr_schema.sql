@@ -2,7 +2,7 @@
 -- create the database
 CREATE DATABASE hr;
 
--- switch to ht database;
+-- switch to hR database;
 USE hr;
 
 /*
@@ -19,8 +19,7 @@ CREATE TABLE REGIONS (
     REGION_NAME		VARCHAR(50),
     PRIMARY KEY 	PK_REGIONS (REGION_ID) -- NAME OF THE PRIMARY KEY CONSTRAINT IS PK_REGIONS
 );
-DESC REGIONS;
--- DROP TABLE REGIONS;
+
 /*
 Countries Table
 The Countries table holds information about the countries where the company operates.
@@ -88,10 +87,10 @@ JOB_TITLE: 		The title of the job position (e.g., "Software Engineer", "HR Manag
 MIN_SALARY: 	The minimum salary that can be earned in that job position.
 MAX_SALARY: 	The maximum salary that can be earned in that job position.
 */
-CREATE TABLE Jobs (
-    JOB_ID 			VARCHAR(10) ,
+CREATE TABLE JOBS (
+    JOB_ID 			VARCHAR(10),
     JOB_TITLE 		VARCHAR(35),
-    MIN_SALARY 		DECIMAL(8, 2),
+    MIN_SALARY 		DECIMAL(8, 2), -- MAX VALUE IS 99999999.99
     MAX_SALARY 		DECIMAL(8, 2),
     PRIMARY KEY		PK_JOBS (JOB_ID)
 );
@@ -108,14 +107,15 @@ END_DATE: 		The date when the employee left the job or changed roles.
 JOB_ID: 		The job ID associated with the employee during this period (links to the Jobs table).
 DEPARTMENT_ID: 	The department in which the employee worked during this period (links to the Departments table).
 */
-CREATE TABLE Job_History (
+CREATE TABLE JOB_HISTORY (
     EMPLOYEE_ID 	INT,
     START_DATE 		DATE,
     END_DATE 		DATE,
     JOB_ID 			VARCHAR(10),
     DEPARTMENT_ID 	INT,
-    PRIMARY KEY 	PK_Job_History (EMPLOYEE_ID, START_DATE) -- COMPOSITE PRIMARY KEY
+    PRIMARY KEY 	PK_JOB_HISTORY (EMPLOYEE_ID, START_DATE) -- COMPOSITE PRIMARY KEY
 );
+
 /*
 Employees Table
 The Employees table contains information about employees working in the organization.
@@ -135,7 +135,7 @@ MANAGER_ID: 	The ID of the employee's direct manager, which links to the EMPLOYE
 DEPARTMENT_ID: 	Refers to the department where the employee works. 
 				This links to the DEPARTMENT_ID in the Departments table.
 */
-CREATE TABLE Employees (
+CREATE TABLE EMPLOYEES (
     EMPLOYEE_ID 	INT,
     FIRST_NAME 		VARCHAR(20),
     LAST_NAME 		VARCHAR(25),
@@ -147,5 +147,5 @@ CREATE TABLE Employees (
     COMMISSION_PCT 	DECIMAL(2, 2),
     MANAGER_ID 		INT,
     DEPARTMENT_ID 	INT,
-    PRIMARY KEY 	PK_Employees (EMPLOYEE_ID)  
+    PRIMARY KEY 	PK_EMPLOYEES (EMPLOYEE_ID)  
 );
