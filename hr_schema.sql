@@ -153,42 +153,53 @@ CREATE TABLE EMPLOYEES (
 /*
 ALTER TABLES TO INCLUDE FOREIGN KEY 
 */
+
+-- Add foreign key from Locations to Countries
 ALTER TABLE LOCATIONS
 ADD CONSTRAINT FK_Locations_Countries
 FOREIGN KEY (COUNTRY_ID) REFERENCES COUNTRIES(COUNTRY_ID);
 
+-- Add foreign key from Countries to Regions
 ALTER TABLE COUNTRIES
 ADD CONSTRAINT FK_Countries_Regions
 FOREIGN KEY (REGION_ID) REFERENCES REGIONS(REGION_ID);
 
+-- Add foreign key from Departments to Locations
 ALTER TABLE DEPARTMENTS
 ADD CONSTRAINT FK_Departments_Locations
 FOREIGN KEY (LOCATION_ID) REFERENCES LOCATIONS(LOCATION_ID);
 
+-- Add foreign key from Departments to Employees (Manager)
 ALTER TABLE DEPARTMENTS
 ADD CONSTRAINT FK_Departments_Manager
 FOREIGN KEY (MANAGER_ID) REFERENCES EMPLOYEES(EMPLOYEE_ID);
 
+-- Add foreign key from Job_History to Employees
 ALTER TABLE JOB_HISTORY
 ADD CONSTRAINT FK_Job_History_Employees
 FOREIGN KEY (EMPLOYEE_ID) REFERENCES EMPLOYEES(EMPLOYEE_ID);
 
+-- Add foreign key from Job_History to Jobs
 ALTER TABLE JOB_HISTORY
 ADD CONSTRAINT FK_Job_History_Jobs
 FOREIGN KEY (JOB_ID) REFERENCES JOBS(JOB_ID);
 
+-- Add foreign key from Job_History to Departments
 ALTER TABLE JOB_HISTORY
 ADD CONSTRAINT FK_Job_History_Departments
 FOREIGN KEY (DEPARTMENT_ID) REFERENCES DEPARTMENTS(DEPARTMENT_ID);
 
+-- Add foreign key from Employees to Jobs
 ALTER TABLE EMPLOYEES
 ADD CONSTRAINT FK_Employees_Jobs
 FOREIGN KEY (JOB_ID) REFERENCES JOBS(JOB_ID);
 
+-- Add foreign key from Employees to Departments
 ALTER TABLE EMPLOYEES
 ADD CONSTRAINT FK_Employees_Departments
 FOREIGN KEY (DEPARTMENT_ID) REFERENCES DEPARTMENTS(DEPARTMENT_ID);
 
+-- Add foreign key from Employees to Employees (self-referencing for Manager)
 ALTER TABLE EMPLOYEES
 ADD CONSTRAINT FK_Employees_Manager
 FOREIGN KEY (MANAGER_ID) REFERENCES EMPLOYEES(EMPLOYEE_ID);
