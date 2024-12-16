@@ -203,3 +203,83 @@ FOREIGN KEY (DEPARTMENT_ID) REFERENCES DEPARTMENTS(DEPARTMENT_ID);
 ALTER TABLE EMPLOYEES
 ADD CONSTRAINT FK_Employees_Manager
 FOREIGN KEY (MANAGER_ID) REFERENCES EMPLOYEES(EMPLOYEE_ID);
+-------------------------------------------------------------------------------------
+-- DML COMMANDS
+-- Insert data into the Regions table
+INSERT INTO REGIONS (REGION_ID, REGION_NAME) 
+VALUES 
+(1, 'Americas'),
+(2, 'EMEA'),
+(3, 'Asia');
+
+-- Insert data into the Countries table
+INSERT INTO COUNTRIES (COUNTRY_ID, COUNTRY_NAME, REGION_ID) 
+VALUES 
+('US', 'United States', 1),
+('CA', 'Canada', 1),
+('MX', 'Mexico', 1),
+('GB', 'United Kingdom', 2),
+('DE', 'Germany', 2),
+('IN', 'India', 3),
+('CN', 'China', 3),
+('JP', 'Japan', 3);
+
+-- Insert data into the Locations table
+INSERT INTO LOCATIONS (LOCATION_ID, STREET_ADDRESS, POSTAL_CODE, CITY, STATE_PROVINCE, COUNTRY_ID) 
+VALUES 
+(1000, '595 Market Street', '94105', 'San Francisco', 'CA', 'US'),
+(1001, '2010 Hartree Way', '94105', 'Redwood City', 'CA', 'US'),
+(1002, '1312 Park Blvd', '94043', 'Mountain View', 'CA', 'US'),
+(1003, '35-23 Industrial Blvd', '90123', 'Berlin', 'BR', 'DE'),
+(1004, '25 High Street', 'SW1A 2AA', 'London', 'LND', 'GB'),
+(1005, '6000 Chidambaram Street', '60000', 'Mumbai', 'MH', 'IN'),
+(1006, '7 Park Avenue', '10002', 'New York', 'NY', 'US'),
+(1007, '46 Church Street', '20001', 'London', 'ENG', 'GB');
+
+-- Insert data into the Jobs table
+INSERT INTO JOBS (JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY) 
+VALUES 
+('AC_ACCOUNT', 'Public Accountant', 4200, 9000),
+('AC_MGR', 'Accounting Manager', 8300, 17000),
+('AD_ASST', 'Administration Assistant', 3000, 6000),
+('AD_PRES', 'President', 20000, 40000),
+('FI_ACCOUNT', 'Accountant', 4200, 9000),
+('FI_MGR', 'Finance Manager', 7000, 15000),
+('HR_REP', 'Human Resources Representative', 2500, 5500),
+('IT_PROG', 'Programmer', 4000, 9000),
+('MK_MAN', 'Marketing Manager', 5000, 12000),
+('MK_REP', 'Marketing Representative', 2500, 6000),
+('PR_REP', 'Public Relations Representative', 3500, 8500);
+
+-- Insert data into the Employees table
+INSERT INTO EMPLOYEES (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID) 
+VALUES 
+(100, 'Steven', 'King', 'SKING', '515.123.4567', TO_DATE('2007-06-09', 'YYYY-MM-DD'), 'AD_PRES', 24000, NULL, NULL, 90),
+(101, 'Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', TO_DATE('2008-06-09', 'YYYY-MM-DD'), 'AD_VP', 17000, NULL, 100, 90),
+(102, 'Lex', 'De Haan', 'LDEHAAN', '515.123.4569', TO_DATE('2009-06-09', 'YYYY-MM-DD'), 'AD_VP', 17000, NULL, 100, 90),
+(103, 'Alexander', 'Hunold', 'AHUNOLD', '515.123.4570', TO_DATE('2010-06-09', 'YYYY-MM-DD'), 'IT_PROG', 9000, NULL, 102, 60),
+(104, 'Bruce', 'Ernst', 'BERNST', '515.123.4571', TO_DATE('2011-06-09', 'YYYY-MM-DD'), 'IT_PROG', 6000, NULL, 103, 60),
+(105, 'David', 'Austin', 'DAUSTIN', '515.123.4572', TO_DATE('2012-06-09', 'YYYY-MM-DD'), 'IT_PROG', 4800, NULL, 103, 60),
+(106, 'Valli', 'Pataballa', 'VPATABAL', '515.123.4573', TO_DATE('2013-06-09', 'YYYY-MM-DD'), 'IT_PROG', 4800, NULL, 103, 60),
+(107, 'Diana', 'Lorentz', 'DLORENTZ', '515.123.4574', TO_DATE('2014-06-09', 'YYYY-MM-DD'), 'IT_PROG', 4200, NULL, 103, 60),
+(108, 'Nancy', 'Greenberg', 'NGREENBE', '515.123.4575', TO_DATE('2015-06-09', 'YYYY-MM-DD'), 'FI_MGR', 12000, NULL, 101, 100),
+(109, 'Daniel', 'Faviet', 'DFAVIET', '515.123.4576', TO_DATE('2016-06-09', 'YYYY-MM-DD'), 'FI_ACCOUNT', 9000, NULL, 108, 100);
+
+-- Insert data into the Departments table
+INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) 
+VALUES 
+(10, 'Administration', 100, 1000),
+(20, 'IT', 103, 1001),
+(30, 'Finance', 108, 1002),
+(40, 'Marketing', 100, 1003),
+(50, 'Public Relations', 100, 1004);
+
+-- Insert data into the Job_History table
+INSERT INTO JOB_HISTORY (EMPLOYEE_ID, START_DATE, END_DATE, JOB_ID, DEPARTMENT_ID) 
+VALUES 
+(103, TO_DATE('2007-01-01', 'YYYY-MM-DD'), TO_DATE('2010-01-01', 'YYYY-MM-DD'), 'IT_PROG', 60),
+(104, TO_DATE('2007-01-01', 'YYYY-MM-DD'), TO_DATE('2010-01-01', 'YYYY-MM-DD'), 'IT_PROG', 60),
+(105, TO_DATE('2008-01-01', 'YYYY-MM-DD'), TO_DATE('2011-01-01', 'YYYY-MM-DD'), 'IT_PROG', 60),
+(106, TO_DATE('2009-01-01', 'YYYY-MM-DD'), TO_DATE('2012-01-01', 'YYYY-MM-DD'), 'IT_PROG', 60),
+(107, TO_DATE('2009-01-01', 'YYYY-MM-DD'), TO_DATE('2013-01-01', 'YYYY-MM-DD'), 'IT_PROG', 60);
+
